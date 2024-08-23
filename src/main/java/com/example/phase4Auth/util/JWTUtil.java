@@ -12,13 +12,13 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import com.auth0.jwt.interfaces.Claim;
 
 public class JWTUtil{
-	// initialize instance of Algorithm with a secret key
-	// used for creation and verification of token
-	private static final Algorithm algorithm = Algorithm.HMAC256("SECRET_KEY");
 	
 	// create JWT Token with permissions
 	public static String createToken(String permissions) {
 		try {
+			// initialize instance of Algorithm with a secret key
+			// used for creation and verification of token
+			Algorithm algorithm = Algorithm.HMAC256("SECRET_KEY");
 			long threeHoursInMillis = TimeUnit.HOURS.toMillis(3);
 			// return an instance of JWTCreator.Builder class.
 			// used to build JWT token
@@ -38,6 +38,9 @@ public class JWTUtil{
 	// verify JWT Token
 	public static DecodedJWT verifyToken(String token) {
 		try {
+			// initialize instance of Algorithm with a secret key
+			// used for creation and verification of token
+			Algorithm algorithm = Algorithm.HMAC256("SECRET_KEY");
 			return JWT.require(algorithm)
 					.withIssuer("briIssuer")
 					.build()
@@ -50,6 +53,9 @@ public class JWTUtil{
 
 	public static Map<String, Claim> getClaims(String token) {
 		try {
+			// initialize instance of Algorithm with a secret key
+			// used for creation and verification of token
+			Algorithm algorithm = Algorithm.HMAC256("SECRET_KEY");
 			// Verify JWT token and extract claims from it
 			return JWT.require(algorithm)
 					.withIssuer("briIssuer")
